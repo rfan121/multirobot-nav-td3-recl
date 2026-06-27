@@ -2,9 +2,9 @@
 
 Supplementary material for the paper **SCALABLE MULTI-ROBOT NAVIGATION USING TD3-PER WITH REWARD SHAPING AND RECURSIVE CURRICULUM LEARNING**.
 
-This project trains TurtleBot3 robots to navigate without relying on pre-built maps, using the Twin-Delayed Deep Deterministic Policy Gradient (TD3) algorithm as the base learner. On top of TD3, it adds Prioritized Experience Replay (PER) for more efficient sampling and recursive curriculum learning to scale the policy across multiple robots. Robots rely solely on LiDAR for sensing — no SLAM or mapping is involved.
+This project addresses that with a DRL framework built on the Twin-Delayed Deep Deterministic Policy Gradient (TD3) algorithm, enhanced with a structured reward function, Prioritized Experience Replay (PER), recursive curriculum learning, and a runtime policy-switching mechanism — all without relying on inter-robot communication. Robots rely solely on LiDAR for sensing, with no SLAM or mapping involved.
 
-It's built within the ROS framework, with Gazebo handling simulation and PyTorch handling the DRL model.
+It's built within the ROS framework, with Gazebo handling simulation, TurtleBot3 as the robot platform, and PyTorch handling the DRL model.
 
 ## Table of Contents
 
