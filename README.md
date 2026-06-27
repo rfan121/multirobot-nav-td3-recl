@@ -26,7 +26,7 @@ It's built within the ROS framework, with Gazebo handling simulation and PyTorch
 
 ### 🧠 Assumed Background Knowledge
 
-This guide assumes you're comfortable with:
+This guide assumes you're familiar with:
 
 - **Linux / Ubuntu command line** — basic navigation and running shell commands.
 - **ROS fundamentals** — nodes, topics, and launch files.
