@@ -1,0 +1,23 @@
+<launch>
+  <!-- Arguments for robot model, configuration, and tf prefix -->
+  <arg name="model" default="burger" doc="model type [burger, waffle, waffle_pi]"/>
+  <arg name="robot_name" doc="Name of the robot"/>
+  <arg name="robot_position" doc="Initial position of the robot"/>
+  <arg name="tf_prefix" doc="TF prefix for the robot frames"/>
+
+  <!-- Load the URDF and state publisher for the specified robot -->
+  <group ns="$(arg robot_name)">
+    <param name="robot_description" command="$(find xacro)/xacro $(find robot-nav-td3-recl)/robot_urdf/turtlebot3_$(arg model).urdf.xacro" />
+    
+    <param name="tf_prefix" value="$(arg tf_prefix)"/>
+    <!-- Add tf_prefix to the robot_state_publisher node -->
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="$(arg robot_name)_state_publisher">
+      <param name="publish_frequency" type="double" value="50.0"/>
+    </node>
+
+    <!-- Spawn the URDF model in Gazebo with tf_prefix -->
+    <node name="$(arg robot_name)_urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false"
+          args="-urdf -model $(arg robot_name) -param robot_description $(arg robot_position)" />
+  </group>
+</launch>
+

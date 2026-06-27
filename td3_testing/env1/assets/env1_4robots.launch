@@ -1,0 +1,49 @@
+<launch>
+  <!-- Gazebo World -->
+  <include file="$(find robot-nav-td3-recl)/launch/start_world_env1.launch" />
+  
+  <!-- RVIZ -->
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find robot-nav-td3-recl)/rviz/4robots.rviz"/>
+  
+  <arg name="gui" value="false"/>
+  <arg name="ns0" default="tb3_0"/>
+  <arg name="ns1" default="tb3_1"/>
+  <arg name="ns2" default="tb3_2"/>
+  <arg name="ns3" default="tb3_3"/>
+  
+  <!-- First Robot (tb3_0) -->
+  <include file="$(find robot-nav-td3-recl)/launch/start_turtlebot.launch">
+    <arg name="robot_name" value="tb3_0" />
+    <arg name="robot_position" value="-x -1.0 -y 1.0 -z 0.01 -R 0 -P 0 -Y 0.0" />
+    <arg name="tf_prefix" value="tb3_0" />
+  </include>
+
+  <!-- Second Robot (tb3_1) -->
+  <include file="$(find robot-nav-td3-recl)/launch/start_turtlebot.launch">
+    <arg name="robot_name" value="tb3_1" />
+    <arg name="robot_position" value="-x 1.0 -y -1.0 -z 0.01 -R 0 -P 0 -Y 0.0" />
+    <arg name="tf_prefix" value="tb3_1" />
+  </include>
+  
+  <!-- third Robot (tb3_2) -->
+  <include file="$(find robot-nav-td3-recl)/launch/start_turtlebot.launch">
+    <arg name="robot_name" value="tb3_2" />
+    <arg name="robot_position" value="-x -1.0 -y 1.0 -z 0.01 -R 0 -P 0 -Y 0.0" />
+    <arg name="tf_prefix" value="tb3_2" />
+  </include>
+
+  <!-- fourth Robot (tb3_3) -->
+  <include file="$(find robot-nav-td3-recl)/launch/start_turtlebot.launch">
+    <arg name="robot_name" value="tb3_3" />
+    <arg name="robot_position" value="-x 1.0 -y -1.0 -z 0.01 -R 0 -P 0 -Y 0.0" />
+    <arg name="tf_prefix" value="tb3_3" />
+  </include>
+  
+  <!-- Static TF -->
+  <node pkg="tf" type="static_transform_publisher" name="static_tf_tb3_0" args="0 0 0 0 0 0  odom tb3_0/odom 30" />
+  <node pkg="tf" type="static_transform_publisher" name="static_tf_tb3_1" args="0 0 0 0 0 0  odom tb3_1/odom 30" />
+  <node pkg="tf" type="static_transform_publisher" name="static_tf_tb3_2" args="0 0 0 0 0 0  odom tb3_2/odom 30" />
+  <node pkg="tf" type="static_transform_publisher" name="static_tf_tb3_3" args="0 0 0 0 0 0  odom tb3_3/odom 30" />
+    
+</launch>
+
